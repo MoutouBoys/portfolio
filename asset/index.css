@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Playfair Display', serif;
 }
 body::-webkit-scrollbar {
     display: none;
@@ -175,6 +176,7 @@ a:hover{
     border: 2px solid black;
     padding: 15px;
     transition: padding .5s;
+    cursor: pointer;
 }
 .big_image_two{
     width: 320px;
@@ -183,6 +185,7 @@ a:hover{
     border: 2px solid black;
     padding: 15px;
     transition: padding .5s;
+    cursor: pointer;
 }
 .for_big_image_two{
     justify-content: center;
