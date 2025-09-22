@@ -10,6 +10,10 @@ body::-webkit-scrollbar {
     display: none;
     overflow: hidden;
 }
+body, .body_content_all {
+  min-height: 120vh; /* 100% de la hauteur visible réelle sur mobile */
+}
+
 /* My Swiper Page */
 .swiper-pagination{
     margin-top: 5em;
@@ -661,6 +665,7 @@ button:hover i{
         opacity: 1;
     }
 }
+
 /* Arrow Top Fixed */
 @media screen AND (max-width:990px){
     .nav_div_content{

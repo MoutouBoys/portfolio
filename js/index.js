@@ -1,143 +1,121 @@
-let moon= document.querySelector(".fa-moon");
-let sun= document.querySelector(".fa-sun");
-let body_content_all= document.querySelector("body");
-let black= document.querySelector(".black");
-let nav_div_content= document.querySelector(".nav_div_content");
-let body= document.querySelector("body h1");
-let nav_ul_background= document.querySelector(".nav_ul");
-let entente_name= document.querySelector(".nav_div_content_one");
-let white= document.querySelector(".white");
-let fa_times= document.querySelector(".fa-times");
-let fa_bars= document.querySelector(".fa-bars");
+document.addEventListener("DOMContentLoaded", function() {
 
+  // ======== Sélecteurs =========
+  const moon = document.querySelector(".fa-moon");
+  const sun = document.querySelector(".fa-sun");
+  const bodyContent = document.body;
+  const navDivContent = document.querySelector(".nav_div_content");
+  const ententeName = document.querySelector(".nav_div_content_one");
+  const faTimes = document.querySelector(".fa-times");
+  const faBars = document.querySelector(".fa-bars");
+  const navUl = document.querySelector(".nav_ul");
+  const navLiIcon = document.querySelector(".nav_li_icon");
 
+  // ======== Toggle Dark/Light =========
+  if (moon && sun) {
+    moon.addEventListener("click", () => {
+      moon.style.display = "none";
+      sun.style.display = "block";
+      bodyContent.classList.add("black");
+      bodyContent.style.minHeight = "100vh";
+      navDivContent?.classList.add("black_fonce");
+      ententeName?.classList.add("white");
+      faBars?.classList.add("white");
+      sun.classList.add("white");
+      faTimes?.classList.add("white");
+    });
 
-fa_bars.addEventListener("click",function(e){
-    fa_times.classList.add("white");
-    // fa_bars.classList.add("white");
-});
+    sun.addEventListener("click", () => {
+      sun.style.display = "none";
+      moon.style.display = "block";
+      bodyContent.classList.remove("black");
+      bodyContent.style.minHeight = "100vh";
+      navDivContent?.classList.remove("black_fonce");
+      ententeName?.classList.remove("white");
+      faBars?.classList.remove("white");
+      sun.classList.remove("white");
+      faTimes?.classList.remove("white");
+    });
+  }
 
-fa_times.addEventListener("click",function(e){
-    fa_times.classList.remove("white");
-});
+  // ======== Toggle Navbar (Bars / Times) =========
+  if (faBars && faTimes && navUl) {
+    faBars.addEventListener("click", () => {
+      navUl.classList.add("class_block");
+      faTimes.classList.add("class_block");
+      faBars.classList.add("class_none");
+      bodyContent.classList.add("background-color");
+      bodyContent.style.minHeight = "100vh";
+      if (navLiIcon) navLiIcon.style.color = "white";
+    });
 
-moon.addEventListener("click",function(e){
-    sun.style.display='block';
-    moon.style.display='none';
-    body_content_all.classList.add("black");
-    // nav_ul_background.style.backgroundColor= "black";
-    nav_div_content.classList.add("black_fonce");
-    entente_name.classList.add("white");
-    fa_bars.classList.add("white");
-    sun.classList.add("white");
-    fa_times.classList.add("white");
-});
-sun.addEventListener("click",function(e){
-    sun.style.display='none';
-    moon.style.display='block';
-    body_content_all.classList.remove("black");
-    nav_div_content.classList.remove("black_fonce");
-    entente_name.classList.remove("white");
-    fa_bars.classList.remove("white");
-    sun.classList.remove("white");
-    // fa_times.classList.remove("white");
-});
+    faTimes.addEventListener("click", () => {
+      navUl.classList.remove("class_block");
+      faTimes.classList.remove("class_block");
+      faBars.classList.remove("class_none");
+      bodyContent.classList.remove("background-color");
+      bodyContent.style.transition = "background-color 1s";
+      if (navLiIcon) navLiIcon.style.color = "black";
+    });
+  }
 
+  // ======== Swiper =========
+  window.addEventListener('resize', () => {
+    swiper?.update();
+    swipeer?.update();
+  });
 
-let swiper = new Swiper(".mySwiper", {
-slidesPerView: 1,
-//   espace entre les images ou les contenu defilable
-spaceBetween: 30,
-//   luùinausiter des icon de defilement
-loop: false,
-pagination: {
-el: ".swiper-pagination",
-clickable: true,
-},
-//   Rend clickable les icon de defilement
-navigation: {
-nextEl: ".swiper-button-next",
-prevEl: ".swiper-button-prev",
-},
-//   quand l'ecrand arrivera a 1200px l'images afficher sera deux images
-breakpoints: {
-1200: {
-  slidesPerView: 2,
-//   espace entre les images ou les contenu defilable
-  spaceBetween: -285,
-},
-},
-});
-let swipeer = new Swiper(".mySwipeer", {
-loop: true,
-// rewind: true,
-navigation: {
-nextEl: ".swiper-button-next",
-prevEl: ".swiper-button-prev",
-},
-});
+  if (typeof Swiper !== "undefined") {
+    const swiper = new Swiper(".mySwiper", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: false,
+      pagination: { el: ".swiper-pagination", clickable: true },
+      navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+      breakpoints: {
+        1200: { slidesPerView: 2, spaceBetween: 30 } // espace positif
+      }
+    });
 
-window.sr = ScrollReveal();
+    const swipeer = new Swiper(".mySwipeer", {
+      loop: true,
+      navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }
+    });
+  }
 
-sr.reveal('.animate-left', {
-origin: 'left',
-duration: 1000,
-distance: '25rem',
-delay: 300
-});
+  // ======== ScrollReveal =========
+ if (typeof ScrollReveal !== "undefined") {
+  const sr = ScrollReveal({ reset: false, mobile: true });
 
-sr.reveal('.animate-right', {
-origin: 'right',
-duration: 1000,
-distance: '25rem',
-delay: 300
-});
+  const distanceDesktop = "25rem";
+  const distanceMobile = "15rem";
 
-sr.reveal('.animate-top', {
-origin: 'top',
-duration: 1000,
-distance: '25rem',
-delay: 300
-});
+  const distance = window.innerWidth <= 780 ? distanceMobile : distanceDesktop;
 
-sr.reveal('.animate-bottom', {
-origin: 'bottom',
-duration: 1000,
-distance: '25rem',
-delay: 300
-});
-
-// For The Nav Bars Party
-let display_bars = document.querySelector(".fa-bars");
-let display_times = document.querySelector(".fa-times");
-let nav_ul = document.querySelector(".nav_ul");
-let body_content = document.querySelector(".body_content_all");
-let nav_li_icon = document.querySelector(".nav_li_icon");
-let body_g = document.body;
-
-
-display_bars.addEventListener("click",function(e){
-nav_ul.classList.add("class_block");
-display_times.classList.add("class_block");
-display_bars.classList.add("class_none");
-body_g.classList.add("background-color");
-nav_li_icon.style="color:white";
-});
-display_times.addEventListener("click",function(e){
-nav_ul.classList.remove("class_block");
-display_times.classList.remove("class_block");
-display_bars.classList.remove("class_none");
-body_g.classList.remove("background-color");
-body_g.style="transition:background-color 1s";
-nav_li_icon.style="color:black";
-});
-// Cette partie concerne le navbar
-function openNav() {
-  document.getElementById("sidebar").style.left = "0";
-  document.getElementById("main-content").style.marginLeft = "250px";
+  sr.reveal(".animate-left", { origin: "left", duration: 1000, distance: distance, delay: 300 });
+  sr.reveal(".animate-right", { origin: "right", duration: 1000, distance: distance, delay: 300 });
+  sr.reveal(".animate-top", { origin: "top", duration: 1000, distance: distance, delay: 300 });
+  sr.reveal(".animate-bottom", { origin: "bottom", duration: 1000, distance: distance, delay: 300 });
 }
 
-function closeNav() {
-  document.getElementById("sidebar").style.left = "-250px";
-  document.getElementById("main-content").style.marginLeft= "0";
-}
+
+  // ======== Sidebar Functions =========
+  window.openNav = function() {
+    const sidebar = document.getElementById("sidebar");
+    const mainContent = document.getElementById("main-content");
+    if (sidebar && mainContent) {
+      sidebar.style.left = "0";
+      mainContent.style.marginLeft = "250px";
+    }
+  };
+
+  window.closeNav = function() {
+    const sidebar = document.getElementById("sidebar");
+    const mainContent = document.getElementById("main-content");
+    if (sidebar && mainContent) {
+      sidebar.style.left = "-250px";
+      mainContent.style.marginLeft = "0";
+    }
+  };
+
+});
