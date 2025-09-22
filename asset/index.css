@@ -330,6 +330,8 @@ span{
     justify-content: center;
     margin-top: 80px;
     margin-bottom: 70px;
+    padding-right: 40px;
+    padding-left: 40px;
 }
 /* for section content party Three*/
 .fa-code, .fa-shapes, .fa-feather-pointed{

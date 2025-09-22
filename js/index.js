@@ -1,5 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
-
+document.addEventListener("DOMContentLoaded", function () {
   // ======== Sélecteurs =========
   const moon = document.querySelector(".fa-moon");
   const sun = document.querySelector(".fa-sun");
@@ -13,39 +12,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // ======== Toggle Dark/Light =========
   if (moon && sun) {
-    moon.addEventListener("click", () => {
-      moon.style.display = "none";
-      sun.style.display = "block";
-      bodyContent.classList.add("black");
-      bodyContent.style.minHeight = "100vh";
-      navDivContent?.classList.add("black_fonce");
-      ententeName?.classList.add("white");
-      faBars?.classList.add("white");
-      sun.classList.add("white");
-      faTimes?.classList.add("white");
-    });
+    const toggleDarkMode = () => {
+      bodyContent.classList.toggle("black");
+      navDivContent?.classList.toggle("black_fonce");
+      ententeName?.classList.toggle("white");
+      faBars?.classList.toggle("white");
+      faTimes?.classList.toggle("white");
+      sun.classList.toggle("white");
+      moon.style.display = moon.style.display === "none" ? "block" : "none";
+      sun.style.display = sun.style.display === "block" ? "none" : "block";
+    };
 
-    sun.addEventListener("click", () => {
-      sun.style.display = "none";
-      moon.style.display = "block";
-      bodyContent.classList.remove("black");
-      bodyContent.style.minHeight = "100vh";
-      navDivContent?.classList.remove("black_fonce");
-      ententeName?.classList.remove("white");
-      faBars?.classList.remove("white");
-      sun.classList.remove("white");
-      faTimes?.classList.remove("white");
-    });
+    moon.addEventListener("click", toggleDarkMode);
+    sun.addEventListener("click", toggleDarkMode);
   }
 
-  // ======== Toggle Navbar (Bars / Times) =========
+  // ======== Toggle Navbar =========
   if (faBars && faTimes && navUl) {
     faBars.addEventListener("click", () => {
       navUl.classList.add("class_block");
       faTimes.classList.add("class_block");
       faBars.classList.add("class_none");
       bodyContent.classList.add("background-color");
-      bodyContent.style.minHeight = "100vh";
       if (navLiIcon) navLiIcon.style.color = "white";
     });
 
@@ -54,53 +42,43 @@ document.addEventListener("DOMContentLoaded", function() {
       faTimes.classList.remove("class_block");
       faBars.classList.remove("class_none");
       bodyContent.classList.remove("background-color");
-      bodyContent.style.transition = "background-color 1s";
       if (navLiIcon) navLiIcon.style.color = "black";
     });
   }
 
   // ======== Swiper =========
-  window.addEventListener('resize', () => {
-    swiper?.update();
-    swipeer?.update();
-  });
-
   if (typeof Swiper !== "undefined") {
-    const swiper = new Swiper(".mySwiper", {
+    const swiperMain = new Swiper(".mySwiper", {
       slidesPerView: 1,
       spaceBetween: 30,
       loop: false,
       pagination: { el: ".swiper-pagination", clickable: true },
       navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
       breakpoints: {
-        1200: { slidesPerView: 2, spaceBetween: 30 } // espace positif
-      }
+        1200: { slidesPerView: 2, spaceBetween: 30 },
+      },
     });
 
-    const swipeer = new Swiper(".mySwipeer", {
+    const swiperTestimonial = new Swiper(".mySwipeer", {
       loop: true,
-      navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }
+      autoplay: { delay: 4000, disableOnInteraction: false },
+      navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
     });
   }
 
   // ======== ScrollReveal =========
- if (typeof ScrollReveal !== "undefined") {
-  const sr = ScrollReveal({ reset: false, mobile: true });
+  if (typeof ScrollReveal !== "undefined") {
+    const sr = ScrollReveal({ reset: false, mobile: true });
+    const distance = window.innerWidth <= 200 ? "5rem" : "2rem";
 
-  const distanceDesktop = "25rem";
-  const distanceMobile = "15rem";
+    sr.reveal(".animate-left", { origin: "left", distance, duration: 1000, delay: 300, easing: "ease-in-out" });
+    sr.reveal(".animate-right", { origin: "right", distance, duration: 1000, delay: 300, easing: "ease-in-out" });
+    sr.reveal(".animate-top", { origin: "top", distance, duration: 1000, delay: 300, easing: "ease-in-out" });
+    sr.reveal(".animate-bottom", { origin: "bottom", distance, duration: 1000, delay: 300, easing: "ease-in-out" });
+  }
 
-  const distance = window.innerWidth <= 780 ? distanceMobile : distanceDesktop;
-
-  sr.reveal(".animate-left", { origin: "left", duration: 1000, distance: distance, delay: 300 });
-  sr.reveal(".animate-right", { origin: "right", duration: 1000, distance: distance, delay: 300 });
-  sr.reveal(".animate-top", { origin: "top", duration: 1000, distance: distance, delay: 300 });
-  sr.reveal(".animate-bottom", { origin: "bottom", duration: 1000, distance: distance, delay: 300 });
-}
-
-
-  // ======== Sidebar Functions =========
-  window.openNav = function() {
+  // ======== Sidebar =========
+  window.openNav = function () {
     const sidebar = document.getElementById("sidebar");
     const mainContent = document.getElementById("main-content");
     if (sidebar && mainContent) {
@@ -109,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   };
 
-  window.closeNav = function() {
+  window.closeNav = function () {
     const sidebar = document.getElementById("sidebar");
     const mainContent = document.getElementById("main-content");
     if (sidebar && mainContent) {
@@ -118,4 +96,12 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   };
 
+  // ======== Smooth Scroll for Anchors =========
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
 });
