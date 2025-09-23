@@ -15,18 +15,23 @@ body, .body_content_all {
 }
 
 /* My Swiper Page */
+.swiper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .swiper-pagination{
     margin-top: 5em;
     position: absolute;
 }
 .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    /* background: #fff; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centre verticalement si hauteur définie */
+  text-align: center;
+  height: auto;
+  padding: 30px;
 }
 .swiper .swiper-button-next::after,.swiper .swiper-button-prev::after{
     content: "";
@@ -39,11 +44,12 @@ body, .body_content_all {
     justify-content: center;
     color: #777373;
 }
-.swiper-wrapper{
+
+/* .swiper-wrapper{
    display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Crée une grille responsive avec des colonnes de largeur minimale de 250px */
-   gap: 20px; /* Espacement entre les images */
-}
+   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Crée une grille responsive avec des colonnes de largeur minimale de 250px 
+   gap: 20px;  Espacement entre les images 
+} */
 /* End For my swiper page */
 .body_content_all{
     width: 100vw;
@@ -322,30 +328,23 @@ span{
 .for_section_two_div_content_one h3, .for_section_two_div_content_two h3{
     color: rgb(93, 91, 91);
 }
-.for_section_two_div_content_two{
-    margin-left: 12em;
-}
+
 .for_section_two_div_content{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     margin-top: 80px;
     margin-bottom: 70px;
-    padding-right: 40px;
-    padding-left: 40px;
+    padding-right: 5%;
+    padding-left: 5%;
 }
 /* for section content party Three*/
-.fa-code, .fa-shapes, .fa-feather-pointed{
-    font-size: 30px;
-}
-.fa-file-circle-check{
-    font-size: 25px;
-}
 .for_service{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    margin-top: 5em;
-    margin-bottom: 5em;
+    gap: 2rem;
+    margin: 5em auto;
+    padding: 0 1rem;
 }
 .title_service{
     margin-top: 20px;
@@ -356,14 +355,37 @@ span{
     padding: 40px;
     border-radius: 8em;
     text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
-.for_service_content:hover i, .for_service_content_millieu:hover i{
-    transform: rotateY(180deg);
-    transition:transform 03s;
+.for_service_content:hover,
+.for_service_content_millieu:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+    cursor: pointer;
 }
-.for_service_content i, .for_service_content_millieu i{
+.for_service_content span,
+.for_service_content_millieu span {
+    font-size: 40px;
+    color: #333;
+    display: inline-block;
+    transition: transform 0.6s;
     transform: rotateY(-180deg);
-    transition:transform 03s;
+}
+.for_service_content:hover i,
+.for_service_content_millieu:hover i {
+    transform: rotateY(0deg);
+}
+.title_service h1 {
+    font-size: 22px;
+    margin: 0;
+}
+
+.for_service_content h5,
+.for_service_content_millieu h5 {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
 }
 .for_service_content_millieu{
     background-color: rgb(222, 222, 222);
@@ -458,6 +480,9 @@ span{
 }
 .for_section_five_div_content_one{
     font-size: 15px;
+     max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
 }
 .testimonial>h1, .Services>h1, .qualification>h1, .project>h1, .contact_form>h1, .skills_favorite>h1, .footer_title>h1{
     font-size: 30px;
@@ -709,7 +734,6 @@ button:hover i{
         margin-right: 20px;
         justify-content: space-around;
     }
-    
     .section_div_content{
         display: block;
         justify-content: center;
@@ -731,7 +755,10 @@ button:hover i{
     .for_section_six_div_content_two{
         display: block;
     }
-    .for_service{
+   
+     .for_service {
+        flex-direction: column;
+        align-items: center;
         display: block;
     }
     .formulaire_contact{
