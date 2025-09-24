@@ -4,8 +4,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Playfair Display', serif;
+    /* font-family: 'Playfair Display', serif; */
 }
+/* Pour l'affichage des icones fonctionne correctement */
+i.fas, i.fab, i.far, i.fa-solid, i.fa-regular, i.fa-brands {
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900; /* nécessaire pour fas/fa-solid */
+}
+
 body::-webkit-scrollbar {
     display: none;
     overflow: hidden;
@@ -159,9 +165,7 @@ a:hover{
     align-items: center;
     animation: scale 1s alternate;
 }
-.header_content_div_two{
-    animation: margin-top 1s alternate;
-}
+
 .biography, .contact, .service{
     padding-bottom: 4em;
 }
@@ -171,12 +175,6 @@ a:hover{
 .header_content_div{
     display: flex;
     justify-content: space-around;
-}
-.header_content_div_one{
-    animation: margin-left 2s alternate;
-}
-.header_content_div_three{
-    animation: margin-right 2s alternate;
 }
 .big_image{
     width: 320px;
@@ -298,6 +296,9 @@ span{
     background-color: rgba(219, 216, 213, 0.415);
     padding: 15px;
     border-radius: 20px;
+}
+.for_images_frontend:hover, .for_images_frontend_millieu:hover{
+    cursor: pointer;
 }
 .for_images_frontend_content:hover img{
     transform: translateY(-5px);
@@ -428,15 +429,17 @@ span{
 }
 .image_computer_one:hover{
     transform: scaleX(-100%);
+    cursor: pointer;
 }
 .fa-arrow-right{
     margin-left: 5px;
     transition: margin-left .3s;
 }
+.image_one_under_div>h5:hover,
 .image_one_under_div>h5:hover i{
     margin-left: 10px;
-    cursor: pointer;
     transition: margin-left .3s;
+    cursor: pointer;
 }
 .modern_website{
     margin-top: 10px;
@@ -643,56 +646,6 @@ button:hover i{
     animation:arrow_up 2s infinite ;
     color: #eaeaea;
 }
-@keyframes arrow_up{
-    0% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-.8rem);
-    }
-}
-@keyframes scale{
-    0%{
-        transform: scale(2);
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-@keyframes margin-left{
-    0%{
-        opacity: 0;
-        transform: translate(-100px);
-    }
-    100%{
-        opacity: 1;
-    }
-}
-@keyframes margin-right{
-    0%{
-        opacity: 0;
-        transform: translate(100px);
-    }
-    100%{
-        opacity: 1;
-    }
-}
-@keyframes margin-top{
-    0%{
-        opacity: 0;
-        transform: translateY(-70px);
-    }
-    100%{
-        opacity: 1;
-    }
-}
-
 /* Arrow Top Fixed */
 @media screen AND (max-width:990px){
     .nav_div_content{

@@ -71,6 +71,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const sr = ScrollReveal({ reset: false, mobile: true });
     const distance = window.innerWidth <= 200 ? "5rem" : "2rem";
 
+    // Animation scale (équivalent à @keyframes scale)
+    sr.reveal(".animate-scale", {
+      scale: 2,            // correspond à transform: scale(2) au départ
+      opacity: 0,          // départ invisible
+      duration: 1000,      // durée en ms (comme animation-duration)
+      easing: "ease-in-out",
+      delay: 200,          // petit délai avant de commencer
+    });
     sr.reveal(".animate-left", { origin: "left", distance, duration: 1000, delay: 300, easing: "ease-in-out" });
     sr.reveal(".animate-right", { origin: "right", distance, duration: 1000, delay: 300, easing: "ease-in-out" });
     sr.reveal(".animate-top", { origin: "top", distance, duration: 1000, delay: 300, easing: "ease-in-out" });
