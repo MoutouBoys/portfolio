@@ -4,7 +4,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* font-family: 'Playfair Display', serif; */
 }
 /* Pour l'affichage des icones fonctionne correctement */
 i.fas, i.fab, i.far, i.fa-solid, i.fa-regular, i.fa-brands {
@@ -17,7 +16,8 @@ body::-webkit-scrollbar {
     overflow: hidden;
 }
 body, .body_content_all {
-  min-height: 120vh; /* 100% de la hauteur visible réelle sur mobile */
+    min-height: 120vh; /* 100% de la hauteur visible réelle sur mobile */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* My Swiper Page */

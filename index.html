@@ -241,7 +241,7 @@
                 <div class="section_div_content">
                     <div class="section_div_content_one animate-left">
                         <div class="title_of_for_images_frontend">
-                            <h5><span>💻 </span> Other langages</h5>
+                            <h5><span>💻 </span> Other languages ​​and tool</h5>
                         </div>
                         <div class="section_div_content_one_content">
                             <div class="for_images_frontend">
@@ -785,22 +785,20 @@
                     </div>
                     <div class="responsive_marge">
                         <!-- FORM WITH FORMSPREE -->
-                        <form action="https://formspree.io/f/moqprjkl" method="post">
+                        <form id="contactForm">
                             <div class="contact_input">
-                                <label for="name">Names</label>
-                                <input type="text" name="name" placeholder="Write Your Names" required>
+                            <label for="name">Names</label>
+                            <input id="name" name="name" type="text" placeholder="Write Your Names" required>
                             </div>
                             <div class="contact_input">
-                                <label for="email">Mail</label>
-                                <input type="email" name="email" placeholder="Write Your Email" required>
+                            <label for="email">Mail</label>
+                            <input id="email" name="email" type="email" placeholder="Write Your Email" required>
                             </div>
                             <div class="contact_input">
-                                <label for="message">Project</label>
-                                <textarea name="message" cols="40" rows="10" placeholder="Write Your Project" required></textarea>
+                            <label for="message">Project</label>
+                            <textarea id="message" name="message" cols="40" rows="6" placeholder="Write Your Project" required></textarea>
                             </div>
-                            <button type="submit" target="_blank">
-                                Submit <i class="fa-solid fa-arrow-right right"></i>
-                            </button>
+                            <button type="submit">Submit <i class="fa-solid fa-arrow-right right"></i></button>
                         </form>
                     </div>
                 </div>
@@ -833,5 +831,36 @@
         </footer>
     </div>
     <script src="js/index.js"></script>
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const data = {
+                name: form.name.value.trim(),
+                email: form.email.value.trim(),
+                message: form.message.value.trim(),
+            };
+
+            try {
+                const res = await fetch("/send", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+                });
+
+                const result = await res.json();
+                if (res.ok) {
+                alert(result.message || "Message envoyé !");
+                form.reset();
+                } else {
+                alert(result.message || "Erreur serveur lors de l'envoi.");
+                console.error("Server returned:", result);
+                }
+            } catch (err) {
+                alert("Erreur lors de l'envoi du formulaire (fetch).");
+                console.error(err);
+            }
+        });
+    </script>
 </body>
 </html>
