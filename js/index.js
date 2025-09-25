@@ -5,9 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const bodyContent = document.body;
   const navDivContent = document.querySelector(".nav_div_content");
   const ententeName = document.querySelector(".nav_div_content_one");
-  const faTimes = document.querySelector(".fa-times");
-  const faBars = document.querySelector(".fa-bars");
-  const navUl = document.querySelector(".nav_ul");
+ const faBars = document.querySelector(".fa-bars");
+const faTimes = document.querySelector(".fa-times");
+const navUl = document.querySelector(".nav_ul");
+const overlay = document.querySelector(".background-overlay");
   const navLiIcon = document.querySelector(".nav_li_icon");
 
   // ======== Toggle Dark/Light =========
@@ -28,24 +29,29 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ======== Toggle Navbar =========
-  if (faBars && faTimes && navUl) {
-    faBars.addEventListener("click", () => {
-      navUl.classList.add("class_block");
-      faTimes.classList.add("class_block");
-      faBars.classList.add("class_none");
-      bodyContent.classList.add("background-color");
-      if (navLiIcon) navLiIcon.style.color = "white";
-    });
+  // Ouvrir
+faBars.addEventListener("click", () => {
+  navUl.classList.add("active");
+  overlay.classList.add("show");
+  faBars.style.display = "none";
+  faTimes.style.display = "block";
+});
 
-    faTimes.addEventListener("click", () => {
-      navUl.classList.remove("class_block");
-      faTimes.classList.remove("class_block");
-      faBars.classList.remove("class_none");
-      bodyContent.classList.remove("background-color");
-      if (navLiIcon) navLiIcon.style.color = "black";
-    });
-  }
+// Fermer
+faTimes.addEventListener("click", () => {
+  navUl.classList.remove("active");
+  overlay.classList.remove("show");
+  faBars.style.display = "block";
+  faTimes.style.display = "none";
+});
 
+// Fermer si on clique sur l’overlay
+overlay.addEventListener("click", () => {
+  navUl.classList.remove("active");
+  overlay.classList.remove("show");
+  faBars.style.display = "block";
+  faTimes.style.display = "none";
+});
   // ======== Swiper =========
   if (typeof Swiper !== "undefined") {
     const swiperMain = new Swiper(".mySwiper", {
