@@ -296,6 +296,69 @@ span{
     background-color: rgba(219, 216, 213, 0.415);
     padding: 15px;
     border-radius: 20px;
+    position: relative; /* IMPORTANT pour le tooltip */
+}
+/* Hover classique */
+.for_images_frontend_content:hover {
+    transform: translateY(-10px) scale(1.1); /* léger zoom et levée */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+}
+/* Click / active */
+.for_images_frontend_content.active {
+    transform: translateY(-5px) scale(1.15);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+    border: 2px solid #04BBC7; /* couleur accent */
+    background-color: rgba(4, 187, 195, 0.1);
+}
+/* Animation pour le texte */
+.for_images_frontend_content h5 {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+/* Tooltip info */
+.tooltip {
+    position: absolute;
+    top: -35px; /* au-dessus de l'élément */
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background-color: #04BBC7;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.for_images_frontend_content.show-tooltip .tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-25px);
+}
+
+
+/* Pour plus de professionnalisme */
+.for_images_frontend_content {
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeUp 0.6s forwards;
+}
+
+.for_images_frontend_content:nth-child(1){ animation-delay: 0.1s; }
+.for_images_frontend_content:nth-child(2){ animation-delay: 0.2s; }
+.for_images_frontend_content:nth-child(3){ animation-delay: 0.3s; }
+
+@keyframes fadeUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.for_images_frontend_content.active h5 {
+    transform: translateY(-5px);
+    opacity: 1;
 }
 .for_images_frontend:hover, .for_images_frontend_millieu:hover{
     cursor: pointer;
