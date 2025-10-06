@@ -77,6 +77,11 @@ body, .body_content_all {
 .black_fonce{
     background-color: rgb(0, 0, 0)!important;
 }
+.logo{
+    width: 200px;
+    border-radius: 50%;
+    display: none;
+}
 /*For The Code Content Nav_Bar*/
 
 .nav_li{
@@ -720,6 +725,9 @@ button:hover i{
     .class_block{
         display: block!important;
     }
+    .logo{
+    display: block;
+}
      .nav_ul {
     position: fixed;
     top: 0;
